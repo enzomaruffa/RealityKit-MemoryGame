@@ -13,13 +13,126 @@ class GameViewController: UIViewController {
     
     @IBOutlet var arView: ARView!
     
+    private var cardsUp: [Entity] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Load the "Box" scene from the "Experience" Reality File
-        let boxAnchor = try! Experience.loadBox()
+        CardComponent.registerComponent()
         
-        // Add the box anchor to the scene
-        arView.scene.anchors.append(boxAnchor)
+        let boundSize = Float(0.3)
+        
+        let anchor = AnchorEntity(plane: .horizontal, minimumBounds: [boundSize, boundSize])
+        arView.scene.addAnchor(anchor)
+        
+        // Loads cards
+        var cardTemplates: [ModelEntity] = []
+        
+        let cardNames = ["time"]
+        
+        for cardName in cardNames {
+            let assetName = "card-" + cardName
+            let cardTemplate = try! Entity.loadModel(named: assetName)
+            cardTemplate.setScale(SIMD3<Float>(repeating: boundSize / Float(cardNames.count + 1)), relativeTo: nil)
+            
+            cardTemplate.generateCollisionShapes(recursive: true)
+            
+            cardTemplate.name = assetName
+            
+            cardTemplate.physicsBody = nil
+            cardTemplate.components[CardComponent.self] = CardComponent()
+            cardTemplate.components[CardComponent.self]?.name = cardName
+            
+            cardTemplates.append(cardTemplate)
+        }
+        
+        
+        // Copies final cards
+        var cards: [Entity] = []
+        
+        for cardTemplate in cardTemplates {
+            for index in 1...2 {
+                let clonedCard = cardTemplate.clone(recursive: true)
+                clonedCard.name = clonedCard.name + "-" + index.description
+                cards.append(clonedCard)
+            }
+        }
+        
+        // Card placement
+        cards.shuffle()
+        
+        let rowSize = Int(sqrt(Double(cards.count)))
+        
+        for (index, card) in cards.enumerated() {
+            let x = Float(index % rowSize) - 1.5
+            let z = Float(index / rowSize) - 1.5
+            
+            card.position = [x * 0.1, 0, z * 0.1]
+            
+            anchor.addChild(card)
+        }
+        
+        // Box mesh
+        let boxSize: Float = boundSize * 1.1
+        let boxMesh = MeshResource.generateBox(size: boxSize)
+        
+        let material = OcclusionMaterial()
+        
+        let occlusionBox = ModelEntity(mesh: boxMesh, materials: [material])
+        
+        occlusionBox.position.y = -boxSize/2 - 0.001
+        anchor.addChild(occlusionBox)
+        
+    }
+    
+    @IBAction func viewPressed(_ sender: UITapGestureRecognizer) {
+        let tapLocation = sender.location(in: arView)
+        
+        if let card = arView.entity(at: tapLocation),
+            let cardComponent = card.components[CardComponent.self] as?
+            CardComponent {
+            print(card.name)
+            
+            // Interaction
+            print(cardComponent.matched)
+            print(cardsUp.count)
+            
+            if !cardComponent.matched && cardsUp.count < 2 {
+                if cardComponent.flipped {
+                    flipDown(card)
+                    cardsUp.removeAll(where: {$0.name == card.name})
+                } else {
+                    flipUp(card)
+                    cardsUp.append(card)
+                }
+                
+                if cardsUp.count >= 2 {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
+                        self.cardsUp.forEach({
+                            self.flipDown($0)
+                            self.cardsUp.removeAll()
+                        })
+                    }
+                }
+            }
+            
+        }
+    }
+    
+    private func flipUp(_ card: Entity){
+        var flipUpTransform = card.transform
+        
+        flipUpTransform.rotation = simd_quatf(angle: .pi, axis: [1, 0, 0])
+        
+        let flipUpController = card.move(to: flipUpTransform, relativeTo: card.parent, duration: 0.25, timingFunction: .easeInOut)
+    }
+    
+    private func flipDown(_ card: Entity){
+        var flipDownTransform = card.transform
+        
+        flipDownTransform.rotation = simd_quatf(angle: 0, axis: [1, 0, 0])
+        
+        let flipDownController = card.move(to: flipDownTransform, relativeTo: card.parent, duration: 0.25, timingFunction: .easeInOut)
     }
 }
+
