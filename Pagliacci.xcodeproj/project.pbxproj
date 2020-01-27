@@ -7,8 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4752F5CA23DF21FD00A28C25 /* card-time.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 4752F5C923DF21FD00A28C25 /* card-time.usdz */; };
 		477E0EE023DF2AEC007234D4 /* CardComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477E0EDF23DF2AEC007234D4 /* CardComponent.swift */; };
+		47C872F423DFA47500C5A290 /* card-enzo.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 47C872EE23DFA46B00C5A290 /* card-enzo.usdz */; };
+		47C872F523DFA47500C5A290 /* card-purple.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 47C872EF23DFA46B00C5A290 /* card-purple.usdz */; };
+		47C872F623DFA47500C5A290 /* card-ufpr.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 47C872F023DFA46C00C5A290 /* card-ufpr.usdz */; };
+		47C872F723DFA47500C5A290 /* card-time.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 47C872F123DFA46C00C5A290 /* card-time.usdz */; };
+		47C872F823DFA47500C5A290 /* card-apple.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 47C872F223DFA46C00C5A290 /* card-apple.usdz */; };
+		47C872F923DFA47500C5A290 /* card-completude.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 47C872F323DFA46C00C5A290 /* card-completude.usdz */; };
 		47EAFE3D23DB107B0025EB48 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47EAFE3C23DB107B0025EB48 /* AppDelegate.swift */; };
 		47EAFE3F23DB107B0025EB48 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47EAFE3E23DB107B0025EB48 /* GameViewController.swift */; };
 		47EAFE4223DB107B0025EB48 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47EAFE4023DB107B0025EB48 /* Main.storyboard */; };
@@ -37,8 +42,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		4752F5C923DF21FD00A28C25 /* card-time.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = "card-time.usdz"; sourceTree = "<group>"; };
 		477E0EDF23DF2AEC007234D4 /* CardComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardComponent.swift; sourceTree = "<group>"; };
+		47C872EE23DFA46B00C5A290 /* card-enzo.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = "card-enzo.usdz"; sourceTree = "<group>"; };
+		47C872EF23DFA46B00C5A290 /* card-purple.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = "card-purple.usdz"; sourceTree = "<group>"; };
+		47C872F023DFA46C00C5A290 /* card-ufpr.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = "card-ufpr.usdz"; sourceTree = "<group>"; };
+		47C872F123DFA46C00C5A290 /* card-time.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = "card-time.usdz"; sourceTree = "<group>"; };
+		47C872F223DFA46C00C5A290 /* card-apple.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = "card-apple.usdz"; sourceTree = "<group>"; };
+		47C872F323DFA46C00C5A290 /* card-completude.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = "card-completude.usdz"; sourceTree = "<group>"; };
 		47EAFE3923DB107B0025EB48 /* Pagliacci.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pagliacci.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		47EAFE3C23DB107B0025EB48 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		47EAFE3E23DB107B0025EB48 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
@@ -105,7 +115,12 @@
 			children = (
 				47EAFE3C23DB107B0025EB48 /* AppDelegate.swift */,
 				47EAFE3E23DB107B0025EB48 /* GameViewController.swift */,
-				4752F5C923DF21FD00A28C25 /* card-time.usdz */,
+				47C872F223DFA46C00C5A290 /* card-apple.usdz */,
+				47C872F323DFA46C00C5A290 /* card-completude.usdz */,
+				47C872EE23DFA46B00C5A290 /* card-enzo.usdz */,
+				47C872EF23DFA46B00C5A290 /* card-purple.usdz */,
+				47C872F123DFA46C00C5A290 /* card-time.usdz */,
+				47C872F023DFA46C00C5A290 /* card-ufpr.usdz */,
 				47EAFE4023DB107B0025EB48 /* Main.storyboard */,
 				47EAFE4323DB107B0025EB48 /* Experience.rcproject */,
 				47EAFE4523DB107F0025EB48 /* Assets.xcassets */,
@@ -238,10 +253,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4752F5CA23DF21FD00A28C25 /* card-time.usdz in Resources */,
+				47C872F523DFA47500C5A290 /* card-purple.usdz in Resources */,
+				47C872F623DFA47500C5A290 /* card-ufpr.usdz in Resources */,
+				47C872F723DFA47500C5A290 /* card-time.usdz in Resources */,
+				47C872F923DFA47500C5A290 /* card-completude.usdz in Resources */,
 				47EAFE4923DB107F0025EB48 /* LaunchScreen.storyboard in Resources */,
 				47EAFE4623DB107F0025EB48 /* Assets.xcassets in Resources */,
 				47EAFE4223DB107B0025EB48 /* Main.storyboard in Resources */,
+				47C872F823DFA47500C5A290 /* card-apple.usdz in Resources */,
+				47C872F423DFA47500C5A290 /* card-enzo.usdz in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
