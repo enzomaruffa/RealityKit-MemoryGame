@@ -11,5 +11,5 @@ import RealityKit
 struct CardComponent: Component, Codable {
     var matched = false
     var flipped = false
-    var name = ""
+    var card: Card?
 }
