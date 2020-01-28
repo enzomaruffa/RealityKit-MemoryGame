@@ -14,10 +14,11 @@
 		47C872F723DFA47500C5A290 /* card-time.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 47C872F123DFA46C00C5A290 /* card-time.usdz */; };
 		47C872F823DFA47500C5A290 /* card-apple.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 47C872F223DFA46C00C5A290 /* card-apple.usdz */; };
 		47C872F923DFA47500C5A290 /* card-completude.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 47C872F323DFA46C00C5A290 /* card-completude.usdz */; };
+		47C872FC23E0548000C5A290 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C872FB23E0548000C5A290 /* Card.swift */; };
+		47C872FE23E054D000C5A290 /* CardSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C872FD23E054D000C5A290 /* CardSingleton.swift */; };
 		47EAFE3D23DB107B0025EB48 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47EAFE3C23DB107B0025EB48 /* AppDelegate.swift */; };
 		47EAFE3F23DB107B0025EB48 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47EAFE3E23DB107B0025EB48 /* GameViewController.swift */; };
 		47EAFE4223DB107B0025EB48 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47EAFE4023DB107B0025EB48 /* Main.storyboard */; };
-		47EAFE4423DB107B0025EB48 /* Experience.rcproject in Sources */ = {isa = PBXBuildFile; fileRef = 47EAFE4323DB107B0025EB48 /* Experience.rcproject */; };
 		47EAFE4623DB107F0025EB48 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 47EAFE4523DB107F0025EB48 /* Assets.xcassets */; };
 		47EAFE4923DB107F0025EB48 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47EAFE4723DB107F0025EB48 /* LaunchScreen.storyboard */; };
 		47EAFE5423DB107F0025EB48 /* PagliacciTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47EAFE5323DB107F0025EB48 /* PagliacciTests.swift */; };
@@ -49,11 +50,12 @@
 		47C872F123DFA46C00C5A290 /* card-time.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = "card-time.usdz"; sourceTree = "<group>"; };
 		47C872F223DFA46C00C5A290 /* card-apple.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = "card-apple.usdz"; sourceTree = "<group>"; };
 		47C872F323DFA46C00C5A290 /* card-completude.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = "card-completude.usdz"; sourceTree = "<group>"; };
+		47C872FB23E0548000C5A290 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		47C872FD23E054D000C5A290 /* CardSingleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardSingleton.swift; sourceTree = "<group>"; };
 		47EAFE3923DB107B0025EB48 /* Pagliacci.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pagliacci.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		47EAFE3C23DB107B0025EB48 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		47EAFE3E23DB107B0025EB48 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		47EAFE4123DB107B0025EB48 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		47EAFE4323DB107B0025EB48 /* Experience.rcproject */ = {isa = PBXFileReference; lastKnownFileType = file.rcproject; path = Experience.rcproject; sourceTree = "<group>"; };
 		47EAFE4523DB107F0025EB48 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		47EAFE4823DB107F0025EB48 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		47EAFE4A23DB107F0025EB48 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -90,6 +92,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		47C872FA23E0545C00C5A290 /* assets */ = {
+			isa = PBXGroup;
+			children = (
+				47C872F223DFA46C00C5A290 /* card-apple.usdz */,
+				47C872F323DFA46C00C5A290 /* card-completude.usdz */,
+				47C872EE23DFA46B00C5A290 /* card-enzo.usdz */,
+				47C872EF23DFA46B00C5A290 /* card-purple.usdz */,
+				47C872F123DFA46C00C5A290 /* card-time.usdz */,
+				47C872F023DFA46C00C5A290 /* card-ufpr.usdz */,
+			);
+			path = assets;
+			sourceTree = "<group>";
+		};
 		47EAFE3023DB107B0025EB48 = {
 			isa = PBXGroup;
 			children = (
@@ -115,18 +130,14 @@
 			children = (
 				47EAFE3C23DB107B0025EB48 /* AppDelegate.swift */,
 				47EAFE3E23DB107B0025EB48 /* GameViewController.swift */,
-				47C872F223DFA46C00C5A290 /* card-apple.usdz */,
-				47C872F323DFA46C00C5A290 /* card-completude.usdz */,
-				47C872EE23DFA46B00C5A290 /* card-enzo.usdz */,
-				47C872EF23DFA46B00C5A290 /* card-purple.usdz */,
-				47C872F123DFA46C00C5A290 /* card-time.usdz */,
-				47C872F023DFA46C00C5A290 /* card-ufpr.usdz */,
+				47C872FA23E0545C00C5A290 /* assets */,
 				47EAFE4023DB107B0025EB48 /* Main.storyboard */,
-				47EAFE4323DB107B0025EB48 /* Experience.rcproject */,
 				47EAFE4523DB107F0025EB48 /* Assets.xcassets */,
 				47EAFE4723DB107F0025EB48 /* LaunchScreen.storyboard */,
 				47EAFE4A23DB107F0025EB48 /* Info.plist */,
 				477E0EDF23DF2AEC007234D4 /* CardComponent.swift */,
+				47C872FB23E0548000C5A290 /* Card.swift */,
+				47C872FD23E054D000C5A290 /* CardSingleton.swift */,
 			);
 			path = Pagliacci;
 			sourceTree = "<group>";
@@ -288,8 +299,9 @@
 			files = (
 				47EAFE3F23DB107B0025EB48 /* GameViewController.swift in Sources */,
 				47EAFE3D23DB107B0025EB48 /* AppDelegate.swift in Sources */,
-				47EAFE4423DB107B0025EB48 /* Experience.rcproject in Sources */,
 				477E0EE023DF2AEC007234D4 /* CardComponent.swift in Sources */,
+				47C872FC23E0548000C5A290 /* Card.swift in Sources */,
+				47C872FE23E054D000C5A290 /* CardSingleton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
