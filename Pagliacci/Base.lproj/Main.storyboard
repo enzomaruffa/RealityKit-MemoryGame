@@ -6,11 +6,16 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="PerryGothic Regular.ttf">
+            <string>PerryGothic</string>
+        </array>
+    </customFonts>
     <scenes>
-        <!--View Controller-->
+        <!--Menu View Controller-->
         <scene sceneID="Cw3-9q-U8u">
             <objects>
-                <viewController id="5JF-Lh-hUW" sceneMemberID="viewController">
+                <viewController id="5JF-Lh-hUW" customClass="MenuViewController" customModule="Pagliacci" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="TM2-w8-gqr">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -25,8 +30,8 @@
                                         <rect key="frame" x="41.5" y="289" width="331" height="56"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Play" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ocp-lY-rpi">
-                                                <rect key="frame" x="10" y="15" width="261" height="26.5"/>
-                                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="22"/>
+                                                <rect key="frame" x="10" y="0.0" width="261" height="56"/>
+                                                <fontDescription key="fontDescription" name="PerryGothic" family="PerryGothic" pointSize="22"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -45,7 +50,7 @@
                                                 </connections>
                                             </button>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="aIn-bT-6w1" firstAttribute="height" secondItem="N4W-ig-8mL" secondAttribute="height" id="4ph-JC-ubb"/>
                                             <constraint firstItem="aIn-bT-6w1" firstAttribute="centerY" secondItem="N4W-ig-8mL" secondAttribute="centerY" id="870-qX-JJh"/>
@@ -56,6 +61,7 @@
                                             <constraint firstItem="ocp-lY-rpi" firstAttribute="leading" secondItem="N4W-ig-8mL" secondAttribute="leading" constant="10" id="McE-AW-s0P"/>
                                             <constraint firstItem="aIn-bT-6w1" firstAttribute="width" secondItem="N4W-ig-8mL" secondAttribute="width" id="UpX-bC-ePq"/>
                                             <constraint firstItem="ocp-lY-rpi" firstAttribute="centerY" secondItem="N4W-ig-8mL" secondAttribute="centerY" id="Xx7-7L-65m"/>
+                                            <constraint firstItem="ocp-lY-rpi" firstAttribute="height" secondItem="N4W-ig-8mL" secondAttribute="height" id="a1B-w3-7ig"/>
                                             <constraint firstItem="aIn-bT-6w1" firstAttribute="centerX" secondItem="N4W-ig-8mL" secondAttribute="centerX" id="brR-IW-BPg"/>
                                         </constraints>
                                     </view>
@@ -82,6 +88,9 @@
                         <viewLayoutGuide key="safeArea" id="uXb-8G-Fs5"/>
                     </view>
                     <navigationItem key="navigationItem" id="f9c-ok-KFq"/>
+                    <connections>
+                        <outlet property="playContainer" destination="N4W-ig-8mL" id="o7j-SM-d8x"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xvn-1F-Ptv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

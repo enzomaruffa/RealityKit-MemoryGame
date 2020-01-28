@@ -167,9 +167,12 @@ class GameViewController: UIViewController {
     }
     
     fileprivate func generateText(_ cardComponent: CardComponent, _ card: Entity) {
+        
+        let font = UIFont(name: "PerryGothic", size: 0.15)
+        
         let textMesh = MeshResource.generateText(cardComponent.card?.shortText ?? "",
                                                  extrusionDepth: 0.01,
-                                                 font: .boldSystemFont(ofSize: 0.2),
+                                                 font: font!,
                                                  containerFrame: CGRect(x: 0, y: 0, width: 1, height: 20),
                                                  alignment: .center,
                                                  lineBreakMode: .byWordWrapping)
