@@ -12,18 +12,20 @@ import AVFoundation
 class MenuViewController: UIViewController {
 
     @IBOutlet weak var playContainer: UIView!
-    @IBOutlet weak var galleryContainer: UIView!
     @IBOutlet weak var previewView: UIView!
+    @IBOutlet weak var descriptionContainer: UIView!
     
     var captureSession: AVCaptureSession!
     var stillImageOutput: AVCapturePhotoOutput!
     var videoPreviewLayer: AVCaptureVideoPreviewLayer!
     
+    @IBOutlet weak var descriptionViewHeight: NSLayoutConstraint!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         ViewTransformers.styleButton(view: playContainer)
-        ViewTransformers.styleButton(view: galleryContainer)
+        ViewTransformers.styleButton(view: descriptionContainer)
         // Do any additional setup after loading the view.
     }
     
@@ -81,7 +83,23 @@ class MenuViewController: UIViewController {
         self.captureSession.stopRunning()
     }
     
-
+    @IBAction func tapPressed(_ sender: Any) {
+        
+        print("[ressed")
+        
+        if descriptionViewHeight.constant == 0 {
+            UIView.animate(withDuration: 0.7) {
+                self.descriptionViewHeight.constant = 120
+                self.view.layoutIfNeeded()
+            }
+        } else {
+            UIView.animate(withDuration: 0.7) {
+                self.descriptionViewHeight.constant = 0
+                self.view.layoutIfNeeded()
+            }
+        }
+    }
+    
     /*
     // MARK: - Navigation
 

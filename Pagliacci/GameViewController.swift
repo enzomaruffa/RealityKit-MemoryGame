@@ -19,11 +19,17 @@ class GameViewController: UIViewController {
     @IBOutlet weak var topBarContainer: UIView!
     @IBOutlet weak var pairsLabel: UILabel!
     
+    private var models: [Card] = CardSingleton.shared.cards
     private var cardsUp: [Entity] = []
     private var cards: [Entity] = []
     private var c: Cancellable?
     
     var scaleFactor: Float?
+    
+    let baseText = "Pairs: "
+    var pairsMade = 0
+    
+    var baseAnchorEntity: AnchorEntity?
     
     // MARK: Lifecycle
     override func viewDidLoad() {
@@ -37,13 +43,32 @@ class GameViewController: UIViewController {
         
         let boundSize = Float(0.3)
         
-        let anchor = AnchorEntity(plane: .horizontal, minimumBounds: [boundSize, boundSize])
         
-        arView.scene.addAnchor(anchor)
+        // cria aranchor no começp
+        let baseAnchor = ARAnchor(transform: self.arView.cameraTransform.matrix)
+        print("Base anchor created \(baseAnchor)")
         
-        createCards(boundSize, anchor)
-        createOcclusionBox(boundSize, anchor)
+        // cria anchorentity com base na aranchor
+        let baseAnchorEntity = AnchorEntity(anchor: baseAnchor)
+        arView.scene.addAnchor(baseAnchorEntity)
+        print("Base anchor entity created \(baseAnchorEntity)")
         
+        // cria a anchor de plano
+        let planeAnchorEntity = AnchorEntity(plane: .horizontal, minimumBounds: [boundSize, boundSize])
+        print("Plane anchor entity created \(planeAnchorEntity)")
+        
+        // adiciona como filha da primeira anchor
+        arView.scene.addAnchor(planeAnchorEntity)
+        self.baseAnchorEntity = baseAnchorEntity
+        
+        // calcula posicao dos cards com base na distancia da camera pra primeira ancora e da posicao das cartas em rleacao a primeira ancora
+        
+//        let planeAnchorEntity = AnchorEntity(plane: .horizontal, minimumBounds: [boundSize, boundSize])
+//        arView.scene.addAnchor(planeAnchorEntity)
+        
+        createCards(boundSize, planeAnchorEntity)
+        createOcclusionBox(boundSize, planeAnchorEntity)
+        updatePairsLabel()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -59,16 +84,17 @@ class GameViewController: UIViewController {
                     //                                                    card.position.y * 1/self.scaleFactor!,
                     //                                                    card.position.z * 1/self.scaleFactor!)
                     
-                    let totalDistance = self.distance(from: cameraPosition, to: card.position)
+                    let totalDistance = self.distance(from: cameraPosition, to: card.position(relativeTo: self.baseAnchorEntity!))
                     
                     
                     print(totalDistance)
                     
-                    if totalDistance < 0.15 && card.children.isEmpty {
+                    if totalDistance < 0.25 && card.children.isEmpty {
                         self.generateText(cardComponent, card)
-                    } else if totalDistance >= 0.15 && !card.children.isEmpty {
+                    } else if totalDistance >= 0.25 && !card.children.isEmpty {
                         card.children.removeAll()
                     }
+                    
                 }
             }
         }
@@ -95,7 +121,7 @@ class GameViewController: UIViewController {
         // Loads cards
         var cardTemplates: [ModelEntity] = []
         
-        let cardModels = CardSingleton.shared.cards
+        let cardModels = models
         
         let cardNames = ["time", "apple", "completude", "enzo", "purple", "ufpr"]
         
@@ -199,6 +225,9 @@ class GameViewController: UIViewController {
             $0.components[CardComponent.self] = cardComponent
         })
         
+        pairsMade += 1
+        updatePairsLabel()
+        
         self.cardsUp.removeAll()
     }
     
@@ -236,7 +265,10 @@ class GameViewController: UIViewController {
         var cardComponent = card.components[CardComponent.self] as! CardComponent
         cardComponent.flipped = false
         card.components[CardComponent.self] = cardComponent
-        
+    }
+    
+    func updatePairsLabel() {
+        pairsLabel.text = baseText + pairsMade.description + "/" + models.count.description
     }
     
     
