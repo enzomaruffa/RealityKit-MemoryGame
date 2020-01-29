@@ -12,7 +12,11 @@ import Combine
 
 class GameViewController: UIViewController {
     
+    // MARK: Variables
     @IBOutlet var arView: ARView!
+    @IBOutlet weak var goBackContainer: UIView!
+    @IBOutlet weak var topBarContainer: UIView!
+    @IBOutlet weak var pairsLabel: UILabel!
     
     private var cardsUp: [Entity] = []
     private var cards: [Entity] = []
@@ -20,9 +24,14 @@ class GameViewController: UIViewController {
     
     var scaleFactor: Float?
     
+    // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        ViewTransformers.styleButton(view: goBackContainer)
+        ViewTransformers.styleButton(view: topBarContainer)
+        
+        // Scene stuff
         CardComponent.registerComponent()
         
         let boundSize = Float(0.3)
@@ -61,6 +70,7 @@ class GameViewController: UIViewController {
         
     }
     
+    // MARK: Helpers
     private func distance(from origin: SIMD3<Float>, to end: SIMD3<Float>) -> Float {
         
         print("Calculating distance from \(origin) to \(end)")
@@ -72,6 +82,7 @@ class GameViewController: UIViewController {
         return sqrt(xD * xD + yD * yD + zD * zD)
     }
     
+    // MARK: Creators
     fileprivate func createCards(_ boundSize: Float, _ anchor: AnchorEntity) {
         // Loads cards
         var cardTemplates: [ModelEntity] = []
@@ -146,26 +157,6 @@ class GameViewController: UIViewController {
         anchor.addChild(occlusionBox)
     }
     
-    fileprivate func completeMatch() {
-        print("Match made!")
-        
-        self.cardsUp.forEach({
-            var cardComponent = $0.components[CardComponent.self] as! CardComponent
-            cardComponent.matched = true
-            $0.components[CardComponent.self] = cardComponent
-        })
-
-        self.cardsUp.removeAll()
-    }
-    
-    fileprivate func dismissMatch() {
-        print("Dismissing!")
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
-            self.cardsUp.forEach({ self.flipDown($0) })
-            self.cardsUp.removeAll()
-        }
-    }
-    
     fileprivate func generateText(_ cardComponent: CardComponent, _ card: Entity) {
         
         let font = UIFont(name: "PerryGothic", size: 0.15)
@@ -189,6 +180,59 @@ class GameViewController: UIViewController {
         card.addChild(textEntity)
     }
     
+    
+    // MARK: Functions
+    fileprivate func completeMatch() {
+        print("Match made!")
+        
+        self.cardsUp.forEach({
+            var cardComponent = $0.components[CardComponent.self] as! CardComponent
+            cardComponent.matched = true
+            $0.components[CardComponent.self] = cardComponent
+        })
+
+        self.cardsUp.removeAll()
+    }
+    
+    fileprivate func dismissMatch() {
+        print("Dismissing!")
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
+            self.cardsUp.forEach({ self.flipDown($0) })
+            self.cardsUp.removeAll()
+        }
+    }
+    
+    
+    private func flipUp(_ card: Entity){
+        var flipUpTransform = card.transform
+
+        flipUpTransform.rotation = simd_quatf(angle: .pi, axis: [0, 0, 1])
+        flipUpTransform.rotation *= simd_quatf(angle: .pi/2, axis: [0, 1, 0])
+        
+        _ = card.move(to: flipUpTransform, relativeTo: card.parent, duration: 0.25, timingFunction: .easeInOut)
+        
+        var cardComponent = card.components[CardComponent.self] as! CardComponent
+        cardComponent.flipped = true
+        card.components[CardComponent.self] = cardComponent
+        
+    }
+    
+    private func flipDown(_ card: Entity){
+        var flipDownTransform = card.transform
+        
+        flipDownTransform.rotation = simd_quatf(angle: 0, axis: [0, 0, 1])
+        flipDownTransform.rotation *= simd_quatf(angle: .pi/2, axis: [0, 1, 0])
+        
+        _ = card.move(to: flipDownTransform, relativeTo: card.parent, duration: 0.25, timingFunction: .easeInOut)
+        
+        var cardComponent = card.components[CardComponent.self] as! CardComponent
+        cardComponent.flipped = false
+        card.components[CardComponent.self] = cardComponent
+        
+    }
+    
+    
+    // MARK: Outlets
     @IBAction func viewPressed(_ sender: UITapGestureRecognizer) {
         let tapLocation = sender.location(in: arView)
         
@@ -234,33 +278,11 @@ class GameViewController: UIViewController {
         }
     }
     
-    private func flipUp(_ card: Entity){
-        var flipUpTransform = card.transform
-
-        flipUpTransform.rotation = simd_quatf(angle: .pi, axis: [0, 0, 1])
-        flipUpTransform.rotation *= simd_quatf(angle: .pi/2, axis: [0, 1, 0])
-        
-        _ = card.move(to: flipUpTransform, relativeTo: card.parent, duration: 0.25, timingFunction: .easeInOut)
-        
-        var cardComponent = card.components[CardComponent.self] as! CardComponent
-        cardComponent.flipped = true
-        card.components[CardComponent.self] = cardComponent
-        
+    @IBAction func goBackPressed(_ sender: Any) {
+        navigationController?.popViewController(animated: true)
     }
     
-    private func flipDown(_ card: Entity){
-        var flipDownTransform = card.transform
-        
-        flipDownTransform.rotation = simd_quatf(angle: 0, axis: [0, 0, 1])
-        flipDownTransform.rotation *= simd_quatf(angle: .pi/2, axis: [0, 1, 0])
-        
-        _ = card.move(to: flipDownTransform, relativeTo: card.parent, duration: 0.25, timingFunction: .easeInOut)
-        
-        var cardComponent = card.components[CardComponent.self] as! CardComponent
-        cardComponent.flipped = false
-        card.components[CardComponent.self] = cardComponent
-        
-    }
+    
 
 }
 

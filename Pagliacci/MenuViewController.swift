@@ -22,20 +22,8 @@ class MenuViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        playContainer.layer.cornerRadius = 9
-        
-        playContainer.layer.shadowColor = UIColor.black.cgColor
-        playContainer.layer.shadowOpacity = 0.5
-        playContainer.layer.shadowOffset = CGSize(width: 2, height: 2)
-        playContainer.layer.shadowRadius = 2
-        
-        //
-        galleryContainer.layer.cornerRadius = 9
-        
-        galleryContainer.layer.shadowColor = UIColor.black.cgColor
-        galleryContainer.layer.shadowOpacity = 0.5
-        galleryContainer.layer.shadowOffset = CGSize(width: 2, height: 2)
-        galleryContainer.layer.shadowRadius = 2
+        ViewTransformers.styleButton(view: playContainer)
+        ViewTransformers.styleButton(view: galleryContainer)
         // Do any additional setup after loading the view.
     }
     
