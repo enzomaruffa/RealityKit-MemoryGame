@@ -128,7 +128,7 @@ class MenuViewController: UIViewController {
     
     private func updateDescriptionContainer(title: String, description: String, timeFound: Bool) {
         descriptionTitle.text = timeFound ? title : String(title.shuffled())
-        descriptionTextView.text = timeFound ? description : "Find the time card first!\n\n" + String(description.shuffled())
+        descriptionTextView.text = timeFound ? description : "Find the time card first!\nPlay the game!\n" + String(description.shuffled())
     }
     
     /*
