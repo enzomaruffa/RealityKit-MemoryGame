@@ -15,6 +15,7 @@ class Card: Codable {
     var text: String
     var shortText: String
     var meta: Bool
+    var revealed: Bool
     
     internal init(name: String, assetName: String, text: String, shortText: String, meta: Bool) {
         self.name = name
@@ -22,6 +23,7 @@ class Card: Codable {
         self.shortText = shortText
         self.text = text
         self.meta = meta
+        self.revealed = false
     }
     
 }

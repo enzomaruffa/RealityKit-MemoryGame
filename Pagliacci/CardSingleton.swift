@@ -30,6 +30,12 @@ class CardSingleton {
         
         card = Card(name: "UFPR", assetName: "ufpr", text: "UFPR",  shortText: "E o semestre recomeça...", meta: false)
         cards.append(card)
-        
+    }
+    
+    func setCardMatched(byCardName cardName: String) {
+        cards.filter({ $0.name == cardName }).first?.revealed = true
+    }
+    func setCardMatched(byAssetName assetName: String) {
+        cards.filter({ $0.assetName == assetName }).first?.revealed = true
     }
 }

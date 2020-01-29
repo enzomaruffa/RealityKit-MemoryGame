@@ -10,23 +10,34 @@ import UIKit
 import AVFoundation
 
 class MenuViewController: UIViewController {
-
+    
+    // MARK: - Variable Outlets
     @IBOutlet weak var playContainer: UIView!
     @IBOutlet weak var previewView: UIView!
     @IBOutlet weak var descriptionContainer: UIView!
     
+    @IBOutlet weak var leftBack: UIImageView!
+    @IBOutlet weak var rightBack: UIImageView!
+    
+    // MARK: - Camera Preview
     var captureSession: AVCaptureSession!
     var stillImageOutput: AVCapturePhotoOutput!
     var videoPreviewLayer: AVCaptureVideoPreviewLayer!
     
+    // MARK: - Constraints
     @IBOutlet weak var descriptionViewHeight: NSLayoutConstraint!
     
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
         ViewTransformers.styleButton(view: playContainer)
         ViewTransformers.styleButton(view: descriptionContainer)
         // Do any additional setup after loading the view.
+        
+        let defaultTransform = CGAffineTransform(rotationAngle: .pi/2)
+        leftBack.transform = defaultTransform
+        rightBack.transform = defaultTransform
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -83,22 +94,32 @@ class MenuViewController: UIViewController {
         self.captureSession.stopRunning()
     }
     
+    // MARK: - Outlets
     @IBAction func tapPressed(_ sender: Any) {
         
-        print("[ressed")
+        let duration = 0.4
         
         if descriptionViewHeight.constant == 0 {
-            UIView.animate(withDuration: 0.7) {
+            let transform = CGAffineTransform(rotationAngle: 3 * .pi/2)
+            UIView.animate(withDuration: duration, delay: 0, options: .curveEaseInOut, animations: {
                 self.descriptionViewHeight.constant = 120
+                self.leftBack.transform = transform
+                self.rightBack.transform = transform
                 self.view.layoutIfNeeded()
-            }
+            }, completion: nil)
         } else {
-            UIView.animate(withDuration: 0.7) {
+            let transform = CGAffineTransform(rotationAngle: .pi/2)
+            UIView.animate(withDuration: duration, delay: 0, options: .curveEaseInOut, animations: {
                 self.descriptionViewHeight.constant = 0
+                self.leftBack.transform = transform
+                self.rightBack.transform = transform
                 self.view.layoutIfNeeded()
-            }
+            }, completion: nil)
         }
     }
+    
+    
+    // MARK: - Collection View
     
     /*
     // MARK: - Navigation

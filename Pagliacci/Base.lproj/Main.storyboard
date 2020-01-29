@@ -107,7 +107,7 @@
                                 <rect key="frame" x="41.5" y="787" width="331" height="60"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The Boy" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QWy-zk-XcR" userLabel="Title">
-                                        <rect key="frame" x="16.5" y="10" width="298" height="30"/>
+                                        <rect key="frame" x="50" y="10" width="231" height="30"/>
                                         <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="sU6-ya-0zn"/>
@@ -120,24 +120,47 @@
                                         </connections>
                                     </label>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="249" verticalCompressionResistancePriority="749" editable="NO" text="Enzo Maruffa. 20 anos. Estuda um pouco de tudo e nada sobre pouco. Gosta de jogos, como este. E de pessoas, como voce." textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DM0-G1-it2">
-                                        <rect key="frame" x="16.5" y="45" width="298" height="5"/>
+                                        <rect key="frame" x="24.5" y="45" width="282" height="5"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <gestureRecognizers/>
                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" name="PerryGothic" family="PerryGothic" pointSize="16"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Back" translatesAutoresizingMaskIntoConstraints="NO" id="zTW-oN-arE">
+                                        <rect key="frame" x="20" y="10" width="25" height="25"/>
+                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="zTW-oN-arE" secondAttribute="height" multiplier="1:1" id="DFL-dB-hPk"/>
+                                            <constraint firstAttribute="height" constant="25" id="Wg1-2Q-gro"/>
+                                        </constraints>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Back" translatesAutoresizingMaskIntoConstraints="NO" id="1cq-al-HNP">
+                                        <rect key="frame" x="286" y="10" width="25" height="25"/>
+                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="1cq-al-HNP" secondAttribute="height" multiplier="1:1" id="ktP-gu-jiC"/>
+                                            <constraint firstAttribute="height" constant="25" id="xQM-6G-b3c"/>
+                                        </constraints>
+                                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small"/>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstItem="DM0-G1-it2" firstAttribute="centerX" secondItem="QWy-zk-XcR" secondAttribute="centerX" id="0xd-ql-AzV"/>
+                                    <constraint firstItem="zTW-oN-arE" firstAttribute="top" secondItem="SAs-ye-Ptx" secondAttribute="top" constant="10" id="27z-ob-7L2"/>
+                                    <constraint firstItem="DM0-G1-it2" firstAttribute="width" secondItem="SAs-ye-Ptx" secondAttribute="width" multiplier="0.85" id="7DZ-Vh-Xsq"/>
+                                    <constraint firstItem="QWy-zk-XcR" firstAttribute="leading" secondItem="zTW-oN-arE" secondAttribute="trailing" constant="5" id="CNu-hm-i1i"/>
+                                    <constraint firstAttribute="trailing" secondItem="1cq-al-HNP" secondAttribute="trailing" constant="20" id="CZ5-9H-067"/>
                                     <constraint firstItem="DM0-G1-it2" firstAttribute="top" secondItem="QWy-zk-XcR" secondAttribute="bottom" constant="5" id="KYV-eu-KEh"/>
-                                    <constraint firstItem="DM0-G1-it2" firstAttribute="width" secondItem="QWy-zk-XcR" secondAttribute="width" id="LEK-H8-dgb"/>
+                                    <constraint firstItem="1cq-al-HNP" firstAttribute="leading" secondItem="QWy-zk-XcR" secondAttribute="trailing" constant="5" id="QLQ-8k-ZDW"/>
+                                    <constraint firstItem="zTW-oN-arE" firstAttribute="leading" secondItem="SAs-ye-Ptx" secondAttribute="leading" constant="20" id="Sl0-hT-dwo"/>
                                     <constraint firstItem="QWy-zk-XcR" firstAttribute="centerX" secondItem="SAs-ye-Ptx" secondAttribute="centerX" id="T4g-mP-E6b"/>
                                     <constraint firstAttribute="bottom" secondItem="DM0-G1-it2" secondAttribute="bottom" constant="10" id="aRb-tY-mtT"/>
                                     <constraint firstItem="QWy-zk-XcR" firstAttribute="top" secondItem="SAs-ye-Ptx" secondAttribute="top" constant="10" id="hpP-XN-VWa"/>
-                                    <constraint firstItem="QWy-zk-XcR" firstAttribute="width" secondItem="SAs-ye-Ptx" secondAttribute="width" multiplier="0.9" id="vEG-tC-0KV"/>
+                                    <constraint firstItem="1cq-al-HNP" firstAttribute="width" secondItem="1cq-al-HNP" secondAttribute="height" multiplier="1:1" id="rig-kI-atJ"/>
+                                    <constraint firstItem="1cq-al-HNP" firstAttribute="top" secondItem="SAs-ye-Ptx" secondAttribute="top" constant="10" id="uy9-Db-Pgn"/>
                                     <constraint firstAttribute="height" secondItem="QWy-zk-XcR" secondAttribute="height" multiplier="2" id="yuB-4g-DIm"/>
                                 </constraints>
                                 <connections>
@@ -181,8 +204,10 @@
                     <connections>
                         <outlet property="descriptionContainer" destination="SAs-ye-Ptx" id="HRr-gk-Wpi"/>
                         <outlet property="descriptionViewHeight" destination="yuB-4g-DIm" id="mfC-Wc-uHU"/>
+                        <outlet property="leftBack" destination="zTW-oN-arE" id="joh-CF-tdO"/>
                         <outlet property="playContainer" destination="N4W-ig-8mL" id="o7j-SM-d8x"/>
                         <outlet property="previewView" destination="hZa-8P-9lr" id="5jj-6X-lYm"/>
+                        <outlet property="rightBack" destination="1cq-al-HNP" id="BB3-Dk-5aO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xvn-1F-Ptv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
