@@ -11,6 +11,9 @@ import AVFoundation
 
 class MenuViewController: UIViewController {
     
+    // MARK: - Variables
+    private var models = CardSingleton.shared.cards
+    
     // MARK: - Variable Outlets
     @IBOutlet weak var playContainer: UIView!
     @IBOutlet weak var previewView: UIView!
@@ -18,11 +21,13 @@ class MenuViewController: UIViewController {
     
     @IBOutlet weak var leftBack: UIImageView!
     @IBOutlet weak var rightBack: UIImageView!
+    @IBOutlet weak var descriptionTitle: UILabel!
+    @IBOutlet weak var descriptionTextView: UITextView!
     
     // MARK: - Camera Preview
-    var captureSession: AVCaptureSession!
-    var stillImageOutput: AVCapturePhotoOutput!
-    var videoPreviewLayer: AVCaptureVideoPreviewLayer!
+    private var captureSession: AVCaptureSession!
+    private var stillImageOutput: AVCapturePhotoOutput!
+    private var videoPreviewLayer: AVCaptureVideoPreviewLayer!
     
     // MARK: - Constraints
     @IBOutlet weak var descriptionViewHeight: NSLayoutConstraint!
@@ -120,6 +125,11 @@ class MenuViewController: UIViewController {
     
     
     // MARK: - Collection View
+    
+    private func updateDescriptionContainer(title: String, description: String, timeFound: Bool) {
+        descriptionTitle.text = timeFound ? title : String(title.shuffled())
+        descriptionTextView.text = timeFound ? description : "Find the time card first!\n\n" + String(description.shuffled())
+    }
     
     /*
     // MARK: - Navigation

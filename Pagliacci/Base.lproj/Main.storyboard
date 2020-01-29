@@ -203,6 +203,8 @@
                     <navigationItem key="navigationItem" id="f9c-ok-KFq"/>
                     <connections>
                         <outlet property="descriptionContainer" destination="SAs-ye-Ptx" id="HRr-gk-Wpi"/>
+                        <outlet property="descriptionTextView" destination="DM0-G1-it2" id="TpE-pV-Vb8"/>
+                        <outlet property="descriptionTitle" destination="QWy-zk-XcR" id="qar-7R-F55"/>
                         <outlet property="descriptionViewHeight" destination="yuB-4g-DIm" id="mfC-Wc-uHU"/>
                         <outlet property="leftBack" destination="zTW-oN-arE" id="joh-CF-tdO"/>
                         <outlet property="playContainer" destination="N4W-ig-8mL" id="o7j-SM-d8x"/>

@@ -43,7 +43,6 @@ class GameViewController: UIViewController {
         
         let boundSize = Float(0.3)
         
-        
         // cria aranchor no começp
         let baseAnchor = ARAnchor(transform: self.arView.cameraTransform.matrix)
         print("Base anchor created \(baseAnchor)")
@@ -68,6 +67,8 @@ class GameViewController: UIViewController {
         
         createCards(boundSize, planeAnchorEntity)
         createOcclusionBox(boundSize, planeAnchorEntity)
+        
+        pairsMade = models.filter({ $0.revealed }).count
         updatePairsLabel()
     }
     
@@ -85,9 +86,6 @@ class GameViewController: UIViewController {
                     //                                                    card.position.z * 1/self.scaleFactor!)
                     
                     let totalDistance = self.distance(from: cameraPosition, to: card.position(relativeTo: self.baseAnchorEntity!))
-                    
-                    
-                    print(totalDistance)
                     
                     if totalDistance < 0.25 && card.children.isEmpty {
                         self.generateText(cardComponent, card)
@@ -107,8 +105,6 @@ class GameViewController: UIViewController {
     // MARK: Helpers
     private func distance(from origin: SIMD3<Float>, to end: SIMD3<Float>) -> Float {
         
-        print("Calculating distance from \(origin) to \(end)")
-        
         let xD = (end.x) - (origin.x)
         let yD = (end.y) - (origin.y)
         let zD = (end.z) - (origin.z)
@@ -123,9 +119,7 @@ class GameViewController: UIViewController {
         
         let cardModels = models
         
-        let cardNames = ["time", "apple", "completude", "enzo", "purple", "ufpr"]
-        
-        scaleFactor = boundSize / sqrt(Float(cardNames.count * 2 + 1))
+        scaleFactor = boundSize / sqrt(Float(cardModels.count * 2 + 1))
         print("Scaling cards by \(scaleFactor!)")
         
         for cardModel in cardModels {
@@ -149,6 +143,7 @@ class GameViewController: UIViewController {
         // Copies final cards
         var cards: [Entity] = []
         
+        print("Cloning cards...")
         for cardTemplate in cardTemplates {
             for index in 1...2 {
                 let clonedCard = cardTemplate.clone(recursive: true)
@@ -158,6 +153,20 @@ class GameViewController: UIViewController {
                 var rotateTransform = clonedCard.transform
                 rotateTransform.rotation = simd_quatf(angle: .pi/2, axis: [0, 1, 0])
                 clonedCard.transform = rotateTransform
+                
+                if clonedCard.components[CardComponent.self] != nil {
+                    var cardComponent = clonedCard.components[CardComponent.self] as! CardComponent
+
+                    print("Checking if revealed...")
+                    if cardComponent.card!.revealed {
+                        print("Flipping up card!")
+                        flipUp(clonedCard, animated: false)
+
+                        // Updates component
+                        cardComponent.matched = true
+                        clonedCard.components[CardComponent.self] = cardComponent
+                    }
+                }
                 
                 self.cards.append(clonedCard)
             }
@@ -223,6 +232,9 @@ class GameViewController: UIViewController {
             var cardComponent = $0.components[CardComponent.self] as! CardComponent
             cardComponent.matched = true
             $0.components[CardComponent.self] = cardComponent
+            
+            // Updates Singleton
+            CardSingleton.shared.setCardMatched(byCardName: cardComponent.card!.name)
         })
         
         pairsMade += 1
@@ -240,13 +252,18 @@ class GameViewController: UIViewController {
     }
     
     
-    private func flipUp(_ card: Entity){
+    private func flipUp(_ card: Entity, animated: Bool = true){
         var flipUpTransform = card.transform
         
         flipUpTransform.rotation = simd_quatf(angle: .pi, axis: [0, 0, 1])
         flipUpTransform.rotation *= simd_quatf(angle: .pi/2, axis: [0, 1, 0])
         
-        _ = card.move(to: flipUpTransform, relativeTo: card.parent, duration: 0.25, timingFunction: .easeInOut)
+        if animated {
+            _ = card.move(to: flipUpTransform, relativeTo: card.parent, duration: 0.25, timingFunction: .easeInOut)
+        } else {
+            card.transform = flipUpTransform
+        }
+        
         
         var cardComponent = card.components[CardComponent.self] as! CardComponent
         cardComponent.flipped = true
