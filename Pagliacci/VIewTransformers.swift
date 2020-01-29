@@ -16,7 +16,7 @@ class ViewTransformers {
         view.layer.shadowColor = UIColor.black.cgColor
         view.layer.shadowOpacity = 0.5
         view.layer.shadowOffset = CGSize(width: 2, height: 2)
-        view.layer.shadowRadius = 2
+        view.layer.shadowRadius = 3
     }
     
 }

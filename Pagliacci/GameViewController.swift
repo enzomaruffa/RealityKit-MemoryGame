@@ -9,11 +9,12 @@
 import UIKit
 import RealityKit
 import Combine
+import ARKit
 
 class GameViewController: UIViewController {
     
     // MARK: Variables
-    @IBOutlet var arView: ARView!
+    @IBOutlet weak var arView: ARView!
     @IBOutlet weak var goBackContainer: UIView!
     @IBOutlet weak var topBarContainer: UIView!
     @IBOutlet weak var pairsLabel: UILabel!
@@ -37,9 +38,15 @@ class GameViewController: UIViewController {
         let boundSize = Float(0.3)
         
         let anchor = AnchorEntity(plane: .horizontal, minimumBounds: [boundSize, boundSize])
-    
+        
         arView.scene.addAnchor(anchor)
         
+        createCards(boundSize, anchor)
+        createOcclusionBox(boundSize, anchor)
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         c = arView.scene.subscribe(to: SceneEvents.Update.self) { (event) in
             let cameraPosition = self.arView.cameraTransform.translation
             
@@ -48,11 +55,12 @@ class GameViewController: UIViewController {
                 
                 if cardComponent.matched {
                     
-//                    var cardPosition = SIMD3<Float>(card.position.x * 1/self.scaleFactor!,
-//                                                    card.position.y * 1/self.scaleFactor!,
-//                                                    card.position.z * 1/self.scaleFactor!)
+                    //                    var cardPosition = SIMD3<Float>(card.position.x * 1/self.scaleFactor!,
+                    //                                                    card.position.y * 1/self.scaleFactor!,
+                    //                                                    card.position.z * 1/self.scaleFactor!)
                     
                     let totalDistance = self.distance(from: cameraPosition, to: card.position)
+                    
                     
                     print(totalDistance)
                     
@@ -64,10 +72,10 @@ class GameViewController: UIViewController {
                 }
             }
         }
-        
-        createCards(boundSize, anchor)
-        createOcclusionBox(boundSize, anchor)
-        
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        c?.cancel()
     }
     
     // MARK: Helpers
@@ -190,7 +198,7 @@ class GameViewController: UIViewController {
             cardComponent.matched = true
             $0.components[CardComponent.self] = cardComponent
         })
-
+        
         self.cardsUp.removeAll()
     }
     
@@ -205,7 +213,7 @@ class GameViewController: UIViewController {
     
     private func flipUp(_ card: Entity){
         var flipUpTransform = card.transform
-
+        
         flipUpTransform.rotation = simd_quatf(angle: .pi, axis: [0, 0, 1])
         flipUpTransform.rotation *= simd_quatf(angle: .pi/2, axis: [0, 1, 0])
         
@@ -283,6 +291,6 @@ class GameViewController: UIViewController {
     }
     
     
-
+    
 }
 
