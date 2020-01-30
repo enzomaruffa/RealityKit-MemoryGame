@@ -30,6 +30,9 @@ class GameViewController: UIViewController {
     var pairsMade = 0
     
     var baseAnchorEntity: AnchorEntity?
+    var occlusionBox: Entity?
+    
+    var cheaterFound = false
     
     // MARK: Lifecycle
     override func viewDidLoad() {
@@ -66,7 +69,10 @@ class GameViewController: UIViewController {
 //        arView.scene.addAnchor(planeAnchorEntity)
         
         createCards(boundSize, planeAnchorEntity)
-        createOcclusionBox(boundSize, planeAnchorEntity)
+        
+        if !cheaterFound {
+           createOcclusionBox(boundSize, planeAnchorEntity)
+        }
         
         pairsMade = models.filter({ $0.revealed }).count
         updatePairsLabel()
@@ -80,10 +86,6 @@ class GameViewController: UIViewController {
                 let cardComponent = card.components[CardComponent.self] as! CardComponent
                 
                 if cardComponent.matched {
-                    
-                    //                    var cardPosition = SIMD3<Float>(card.position.x * 1/self.scaleFactor!,
-                    //                                                    card.position.y * 1/self.scaleFactor!,
-                    //                                                    card.position.z * 1/self.scaleFactor!)
                     
                     let totalDistance = self.distance(from: cameraPosition, to: card.position(relativeTo: self.baseAnchorEntity!))
                     
@@ -119,7 +121,7 @@ class GameViewController: UIViewController {
         
         let cardModels = models
         
-        scaleFactor = boundSize / sqrt(Float(cardModels.count * 2 + 1))
+        scaleFactor = boundSize / sqrt(Float(cardModels.count * 2))
         print("Scaling cards by \(scaleFactor!)")
         
         for cardModel in cardModels {
@@ -198,6 +200,8 @@ class GameViewController: UIViewController {
         
         occlusionBox.position.y = -boxSize/2 - 0.001
         anchor.addChild(occlusionBox)
+        
+        self.occlusionBox = occlusionBox
     }
     
     fileprivate func generateText(_ cardComponent: CardComponent, _ card: Entity) {
@@ -235,6 +239,11 @@ class GameViewController: UIViewController {
             
             // Updates Singleton
             CardSingleton.shared.setCardMatched(byCardName: cardComponent.card!.name)
+            
+            if cardComponent.card!.name == "Cheater" {
+                self.occlusionBox?.removeFromParent()
+                self.cheaterFound = true
+            }
         })
         
         pairsMade += 1

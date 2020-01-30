@@ -52,6 +52,11 @@ class MenuViewController: UIViewController {
         setupViewBased(on: models.first!)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        collection.reloadData()
+        updateOnPage()
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
@@ -176,12 +181,16 @@ extension MenuViewController: UICollectionViewDelegate {
         }
     }
     
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+    fileprivate func updateOnPage() {
         let currentPage = collection.contentOffset.x / collection.frame.size.width
         
         let card = models[Int(currentPage)]
         
         setupViewBased(on: card)
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        updateOnPage()
     }
 }
 
