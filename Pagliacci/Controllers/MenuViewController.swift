@@ -19,6 +19,8 @@ class MenuViewController: UIViewController {
     @IBOutlet weak var previewView: UIView!
     @IBOutlet weak var descriptionContainer: UIView!
     
+    @IBOutlet weak var collection: UICollectionView!
+    
     @IBOutlet weak var leftBack: UIImageView!
     @IBOutlet weak var rightBack: UIImageView!
     @IBOutlet weak var descriptionTitle: UILabel!
@@ -43,6 +45,11 @@ class MenuViewController: UIViewController {
         let defaultTransform = CGAffineTransform(rotationAngle: .pi/2)
         leftBack.transform = defaultTransform
         rightBack.transform = defaultTransform
+        
+        collection.delegate = self
+        collection.dataSource = self
+        
+        setupViewBased(on: models.first!)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -77,7 +84,7 @@ class MenuViewController: UIViewController {
     }
     
     func setupLivePreview() {
-        print("Previewing...")
+        print("Setting camera preview...")
         videoPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
         
         videoPreviewLayer.videoGravity = .resizeAspectFill
@@ -123,14 +130,6 @@ class MenuViewController: UIViewController {
         }
     }
     
-    
-    // MARK: - Collection View
-    
-    private func updateDescriptionContainer(title: String, description: String, timeFound: Bool) {
-        descriptionTitle.text = timeFound ? title : String(title.shuffled())
-        descriptionTextView.text = timeFound ? description : "Find the time card first!\nPlay the game!\n" + String(description.shuffled())
-    }
-    
     /*
     // MARK: - Navigation
 
@@ -140,5 +139,64 @@ class MenuViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    // MARK: - Functions
+    private func generateRandomQuestionString() -> String {
+        String(Array(repeating: "?", count: Int.random(in: 1...10)))
+    }
+    
+    private func generateRandomQuestionText() -> String {
+        let count = Int.random(in: 4...18)
+        var finalString = ""
+        for _ in 0..<count {
+            finalString += generateRandomQuestionString() + " "
+        }
+        return finalString
+    }
 
+}
+
+// MARK: - Collection View Helpers
+extension MenuViewController {
+    private func updateDescriptionContainer(title: String, description: String, timeFound: Bool) {
+        descriptionTitle.text = timeFound ? title : String(title.shuffled())
+        descriptionTextView.text = timeFound ? description : "Find the time card first!\nPlay the game!\n\n" + String(description.shuffled())
+    }
+}
+
+// MARK: - UICollectionViewDelegate
+extension MenuViewController: UICollectionViewDelegate {
+    
+    fileprivate func setupViewBased(on card: Card) {
+        let timeFound = models.filter({ $0.name == "Tempo" && $0.revealed }).first != nil
+        if card.revealed {
+            updateDescriptionContainer(title: card.name, description: card.text, timeFound: timeFound)
+        } else {
+            updateDescriptionContainer(title: generateRandomQuestionString(), description: generateRandomQuestionText(), timeFound: true)
+        }
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        let currentPage = collection.contentOffset.x / collection.frame.size.width
+        
+        let card = models[Int(currentPage)]
+        
+        setupViewBased(on: card)
+    }
+}
+
+// MARK: - UICollectionViewDataSource
+extension MenuViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        models.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "menuCell", for: indexPath) as! MenuCollectionViewCell
+        
+        print("Setting cell \(indexPath.item)")
+        cell.setupCell(with: models[indexPath.item])
+        
+        return cell
+    }
 }

@@ -10,6 +10,8 @@ import Foundation
 
 class Card: Codable {
     
+    static let defaultCardAssetName = "verso"
+    
     var name: String
     var assetName: String
     var text: String

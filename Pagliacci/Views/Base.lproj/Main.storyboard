@@ -83,23 +83,40 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ihn-Pb-NbK">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ihn-Pb-NbK">
                                 <rect key="frame" x="0.0" y="370.5" width="414" height="391.5"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="sMt-Jh-mks">
-                                    <size key="itemSize" width="50" height="50"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="sMt-Jh-mks">
+                                    <size key="itemSize" width="413" height="388"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="tXl-no-sAz">
-                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="menuCell" id="tXl-no-sAz" customClass="MenuCollectionViewCell" customModule="Pagliacci" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="2" width="413" height="388"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="yqu-TA-NIT">
-                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="413" height="388"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="apple" translatesAutoresizingMaskIntoConstraints="NO" id="w2Q-ti-5mD">
+                                                    <rect key="frame" x="92.5" y="4" width="228" height="380"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="w2Q-ti-5mD" secondAttribute="height" multiplier="6:10" id="3NP-3P-s8p"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="w2Q-ti-5mD" firstAttribute="centerY" secondItem="yqu-TA-NIT" secondAttribute="centerY" id="1JZ-eY-16E"/>
+                                                <constraint firstItem="w2Q-ti-5mD" firstAttribute="centerX" secondItem="yqu-TA-NIT" secondAttribute="centerX" id="7FD-yD-BRc"/>
+                                                <constraint firstItem="w2Q-ti-5mD" firstAttribute="height" secondItem="yqu-TA-NIT" secondAttribute="height" multiplier="0.98" id="vCI-Q2-7sA"/>
+                                            </constraints>
                                         </collectionViewCellContentView>
+                                        <size key="customSize" width="413" height="388"/>
+                                        <connections>
+                                            <outlet property="imageView" destination="w2Q-ti-5mD" id="gv3-Bv-Ltr"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
@@ -202,6 +219,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="f9c-ok-KFq"/>
                     <connections>
+                        <outlet property="collection" destination="ihn-Pb-NbK" id="dQi-aj-uXx"/>
                         <outlet property="descriptionContainer" destination="SAs-ye-Ptx" id="HRr-gk-Wpi"/>
                         <outlet property="descriptionTextView" destination="DM0-G1-it2" id="TpE-pV-Vb8"/>
                         <outlet property="descriptionTitle" destination="QWy-zk-XcR" id="qar-7R-F55"/>
@@ -342,6 +360,7 @@
     </scenes>
     <resources>
         <image name="Back" width="306" height="396"/>
+        <image name="apple" width="600" height="1000"/>
         <image name="keyboard.chevron.compact.down" catalog="system" width="64" height="44"/>
         <image name="livephoto.play" catalog="system" width="64" height="60"/>
     </resources>
