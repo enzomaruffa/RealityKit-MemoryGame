@@ -273,7 +273,12 @@ class GameViewController: UIViewController {
         
         pairsMade += 1
         updatePairsLabel()
-        showMessagesContainer(changingTextTo: pairsMessages.randomElement()!)
+        
+        if pairsMade == models.count {
+            showMessagesContainer(changingTextTo: "E esses são todos os pares! Parabéns :-]")
+        } else {
+            showMessagesContainer(changingTextTo: pairsMessages.randomElement()!)
+        }
         
         self.cardsUp.removeAll()
     }
