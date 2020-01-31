@@ -182,15 +182,34 @@ extension MenuViewController: UICollectionViewDelegate {
     }
     
     fileprivate func updateOnPage() {
-        let currentPage = collection.contentOffset.x / collection.frame.size.width
+        // Inset
+        let cellSize = collection.frame.width * 0.65
+        var currentPage = 0.5 + (collection.contentOffset.x - cellSize/2) / cellSize
+        
+        print("Current offset: \(collection.contentOffset.x) and with base \((collection.contentOffset.x - cellSize/2))")
+        print("Current cell width: \(collection.frame.width * 0.65)")
+        print("Current page: \(currentPage)")
+        print("Current page rounded: \(Int(round(currentPage)))")
+        
+        currentPage = max(currentPage, 0)
+        currentPage = round(currentPage)
+        
+        collection.scrollToItem(at: IndexPath(item: Int(currentPage), section:0), at: .centeredHorizontally, animated: true)
         
         let card = models[Int(currentPage)]
-        
         setupViewBased(on: card)
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         updateOnPage()
+    }
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        updateOnPage()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        UIEdgeInsets(top: 0, left: collection.frame.width * 0.175, bottom: 0, right: collection.frame.width  * 0.175)
     }
 }
 
@@ -208,4 +227,15 @@ extension MenuViewController: UICollectionViewDataSource {
         
         return cell
     }
+}
+
+extension MenuViewController: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let height = collection.frame.height
+        let width = collection.frame.width * 0.65
+        
+        return CGSize(width: width, height: height)
+    }
+    
 }
