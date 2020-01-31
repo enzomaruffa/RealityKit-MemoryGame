@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="vV5-Ql-Xgf">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="vV5-Ql-Xgf">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15508"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -311,7 +311,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RcW-b1-rd7" userLabel="Messages Container">
                                 <rect key="frame" x="83" y="732" width="331" height="110"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Continue procurando uma superfíce horizontal boa!" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="4D2-DX-HcQ">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Continue procurando uma superfíce horizontal." lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="4D2-DX-HcQ">
                                         <rect key="frame" x="20" y="27.5" width="301" height="55"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="55" id="KS5-Gk-677"/>
@@ -320,13 +320,24 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Toque para esconder" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YYH-ZL-sOL">
+                                        <rect key="frame" x="20" y="90" width="127.5" height="15"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="15" id="qF6-0G-beT"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="PerryGothic" family="PerryGothic" pointSize="10"/>
+                                        <color key="textColor" red="0.4901763797" green="0.48627042770000001" blue="0.48627477879999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="4D2-DX-HcQ" secondAttribute="trailing" constant="10" id="4Zq-UC-pvn"/>
+                                    <constraint firstAttribute="bottom" secondItem="YYH-ZL-sOL" secondAttribute="bottom" constant="5" id="5Mk-ua-2BD"/>
                                     <constraint firstItem="4D2-DX-HcQ" firstAttribute="height" secondItem="RcW-b1-rd7" secondAttribute="height" multiplier="0.5" id="kSh-Qm-qIN"/>
                                     <constraint firstItem="4D2-DX-HcQ" firstAttribute="centerY" secondItem="RcW-b1-rd7" secondAttribute="centerY" id="m1L-GN-Qzb"/>
+                                    <constraint firstItem="YYH-ZL-sOL" firstAttribute="leading" secondItem="RcW-b1-rd7" secondAttribute="leading" constant="20" id="pcE-bD-CyR"/>
                                     <constraint firstItem="4D2-DX-HcQ" firstAttribute="leading" secondItem="RcW-b1-rd7" secondAttribute="leading" constant="20" id="s2d-EO-lxf"/>
                                 </constraints>
                                 <connections>

@@ -165,7 +165,18 @@ class MenuViewController: UIViewController {
 extension MenuViewController {
     private func updateDescriptionContainer(title: String, description: String, timeFound: Bool) {
         descriptionTitle.text = timeFound ? title : String(title.shuffled())
-        descriptionTextView.text = timeFound ? description : "Ache a carta do tempo!\nVá jogar mais!\n\n" + String(description.shuffled())
+        
+        let descriptionString = timeFound ? description : "Ache a carta do tempo!\nVá jogar mais!\n\n" + String(description.shuffled())
+        
+        let style = NSMutableParagraphStyle()
+        style.lineSpacing = 11
+        style.alignment = .center
+        
+        let font = UIFont(name: "PerryGothic", size: 17)
+        
+        let attributes = [NSAttributedString.Key.paragraphStyle: style,
+                          NSAttributedString.Key.font: font]
+        descriptionTextView.attributedText = NSAttributedString(string: descriptionString, attributes: attributes)
     }
 }
 
@@ -185,11 +196,6 @@ extension MenuViewController: UICollectionViewDelegate {
         // Inset
         let cellSize = collection.frame.width * 0.65
         var currentPage = 0.5 + (collection.contentOffset.x - cellSize/2) / cellSize
-        
-        print("Current offset: \(collection.contentOffset.x) and with base \((collection.contentOffset.x - cellSize/2))")
-        print("Current cell width: \(collection.frame.width * 0.65)")
-        print("Current page: \(currentPage)")
-        print("Current page rounded: \(Int(round(currentPage)))")
         
         currentPage = max(currentPage, 0)
         currentPage = round(currentPage)

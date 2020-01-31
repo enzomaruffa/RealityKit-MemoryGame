@@ -28,7 +28,7 @@ class GameViewController: UIViewController {
     }
     var firstClose: Bool = false
     
-    private let pairsMessages: [String] = ["Um novo par foi adicionado na coleção!", "Descubra a história da carta no menu :)", "Parabéns!"]
+    private let pairsMessages: [String] = ["Um novo par foi adicionado na coleção.", "Descubra a história da carta no menu.", "Parabéns, bicho."]
     
     private var models: [Card] = CardSingleton.shared.cards
     private var cardsUp: [Entity] = []
@@ -115,9 +115,6 @@ class GameViewController: UIViewController {
                 if planeAnchor.isAnchored && !self.firstClose {
                     self.hideMessagesContainer()
                     self.firstClose = true
-                } else if !planeAnchor.isAnchored && self.isMessagesHidden {
-                    self.showMessagesContainer()
-                    
                 }
             }
             
@@ -216,7 +213,7 @@ class GameViewController: UIViewController {
     
     fileprivate func createOcclusionBox(_ boundSize: Float, _ anchor: AnchorEntity) {
         // Box mesh
-        let boxSize: Float = boundSize * 1.5
+        let boxSize: Float = boundSize * 1.1
         let boxMesh = MeshResource.generateBox(size: boxSize)
         
         let material = OcclusionMaterial()
@@ -328,8 +325,10 @@ class GameViewController: UIViewController {
         pairsLabel.text = baseText + pairsMade.description + "/" + models.count.description
     }
     
-    func hideMessagesContainer(duration: TimeInterval = 2) {
+    func hideMessagesContainer(duration: TimeInterval = 1) {
         let containerSize = messagesContainer.frame.width
+        
+        print("Hiding")
         
         UIView.animate(withDuration: duration, delay: 0, options: .curveEaseIn, animations: {
             self.messagesContainerTrailing.constant = -(containerSize + 30)
@@ -338,6 +337,8 @@ class GameViewController: UIViewController {
     }
     
     func showMessagesContainer(duration: TimeInterval = 1) {
+        print("Showing")
+        
         UIView.animate(withDuration: duration, delay: 0, options: .curveEaseOut, animations: {
             self.messagesContainerTrailing.constant = 0
         }, completion: nil)
