@@ -13,7 +13,7 @@ class CardSingleton {
     var cards: [Card] = []
     
     private init () {
-        var card = Card(name: "Tempo", assetName: "time", text: "A magia da cronologia", shortText: "Que as palavras se ordenem!", meta: true)
+        var card = Card(name: "Tempo", assetName: "time", text: "A magia da cronologia", shortText: "Bota ordem nesses textos aí, chapa", meta: true)
         cards.append(card)
         
         card = Card(name: "Apple", assetName: "apple", text: "Apple Developer Academy. O lugar onde eu estudo e ocasionalmente trabalho. Ensino e aprendo todos os dias", shortText: " S2 ", meta: false)

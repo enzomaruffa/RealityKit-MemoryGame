@@ -19,6 +19,17 @@ class GameViewController: UIViewController {
     @IBOutlet weak var topBarContainer: UIView!
     @IBOutlet weak var pairsLabel: UILabel!
     
+    @IBOutlet weak var messagesContainer: UIView!
+    @IBOutlet weak var messagesLabel: UILabel!
+    @IBOutlet weak var messagesContainerTrailing: NSLayoutConstraint!
+    
+    var isMessagesHidden: Bool {
+        messagesContainerTrailing.constant != 0
+    }
+    var firstClose: Bool = false
+    
+    private let pairsMessages: [String] = ["Um novo par foi adicionado na coleção!", "Descubra a história da carta no menu :)", "Parabéns!"]
+    
     private var models: [Card] = CardSingleton.shared.cards
     private var cardsUp: [Entity] = []
     private var cards: [Entity] = []
@@ -40,10 +51,11 @@ class GameViewController: UIViewController {
         
         ViewTransformers.styleButton(view: goBackContainer)
         ViewTransformers.styleButton(view: topBarContainer)
-        
+        ViewTransformers.styleMessage(view: messagesContainer)
+    
         // Scene stuff
         CardComponent.registerComponent()
-        
+    
         let boundSize = Float(0.3)
         
         // cria aranchor no começp
@@ -97,6 +109,19 @@ class GameViewController: UIViewController {
                     
                 }
             }
+            
+            if let planeAnchor = self.arView.scene.anchors.filter({ $0 != self.baseAnchorEntity }).first {
+                // Connected and firstClose not happened
+                if planeAnchor.isAnchored && !self.firstClose {
+                    self.hideMessagesContainer()
+                    self.firstClose = true
+                } else if !planeAnchor.isAnchored && self.isMessagesHidden {
+                    self.showMessagesContainer()
+                    
+                }
+            }
+            
+            
         }
     }
     
@@ -248,6 +273,7 @@ class GameViewController: UIViewController {
         
         pairsMade += 1
         updatePairsLabel()
+        showMessagesContainer(changingTextTo: pairsMessages.randomElement()!)
         
         self.cardsUp.removeAll()
     }
@@ -297,6 +323,25 @@ class GameViewController: UIViewController {
         pairsLabel.text = baseText + pairsMade.description + "/" + models.count.description
     }
     
+    func hideMessagesContainer(duration: TimeInterval = 2) {
+        let containerSize = messagesContainer.frame.width
+        
+        UIView.animate(withDuration: duration, delay: 0, options: .curveEaseIn, animations: {
+            self.messagesContainerTrailing.constant = -(containerSize + 30)
+            self.view.layoutIfNeeded()
+        }, completion: nil)
+    }
+    
+    func showMessagesContainer(duration: TimeInterval = 1) {
+        UIView.animate(withDuration: duration, delay: 0, options: .curveEaseOut, animations: {
+            self.messagesContainerTrailing.constant = 0
+        }, completion: nil)
+    }
+    
+    func showMessagesContainer(duration: TimeInterval = 1, changingTextTo text:  String) {
+        messagesLabel.text = text
+        showMessagesContainer()
+    }
     
     // MARK: Outlets
     @IBAction func viewPressed(_ sender: UITapGestureRecognizer) {
@@ -348,6 +393,11 @@ class GameViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     
+    @IBAction func messagesTapped(_ sender: Any) {
+        if !isMessagesHidden {
+            hideMessagesContainer()
+        }
+    }
     
     
 }

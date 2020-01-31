@@ -33,14 +33,14 @@
                                 </view>
                                 <blurEffect style="regular"/>
                             </visualEffectView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="keyboard.chevron.compact.down" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="8iq-I2-CEw">
-                                <rect key="frame" x="41.5" y="56" width="331" height="134.5"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-vazia" translatesAutoresizingMaskIntoConstraints="NO" id="8iq-I2-CEw">
+                                <rect key="frame" x="41.5" y="54" width="331" height="134.5"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N4W-ig-8mL" userLabel="Play Button">
                                 <rect key="frame" x="41.5" y="228.5" width="331" height="56"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Play" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ocp-lY-rpi">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jogar" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ocp-lY-rpi">
                                         <rect key="frame" x="10" y="0.0" width="261" height="56"/>
                                         <fontDescription key="fontDescription" name="PerryGothic" family="PerryGothic" pointSize="22"/>
                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -77,7 +77,7 @@
                                     <constraint firstItem="aIn-bT-6w1" firstAttribute="centerX" secondItem="N4W-ig-8mL" secondAttribute="centerX" id="brR-IW-BPg"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cards" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tkC-ae-P7D">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cartas" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tkC-ae-P7D">
                                 <rect key="frame" x="41.5" y="314.5" width="331" height="56"/>
                                 <fontDescription key="fontDescription" name="PerryGothic" family="PerryGothic" pointSize="24"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -87,21 +87,21 @@
                                 <rect key="frame" x="0.0" y="370.5" width="414" height="391.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="sMt-Jh-mks">
-                                    <size key="itemSize" width="413" height="388"/>
+                                    <size key="itemSize" width="415" height="388"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="menuCell" id="tXl-no-sAz" customClass="MenuCollectionViewCell" customModule="Pagliacci" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="2" width="413" height="388"/>
+                                        <rect key="frame" x="0.0" y="2" width="415" height="388"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="yqu-TA-NIT">
-                                            <rect key="frame" x="0.0" y="0.0" width="413" height="388"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="415" height="388"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="apple" translatesAutoresizingMaskIntoConstraints="NO" id="w2Q-ti-5mD">
-                                                    <rect key="frame" x="92.5" y="4" width="228" height="380"/>
+                                                    <rect key="frame" x="93.5" y="4" width="228" height="380"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="w2Q-ti-5mD" secondAttribute="height" multiplier="6:10" id="3NP-3P-s8p"/>
                                                     </constraints>
@@ -113,7 +113,7 @@
                                                 <constraint firstItem="w2Q-ti-5mD" firstAttribute="height" secondItem="yqu-TA-NIT" secondAttribute="height" multiplier="0.98" id="vCI-Q2-7sA"/>
                                             </constraints>
                                         </collectionViewCellContentView>
-                                        <size key="customSize" width="413" height="388"/>
+                                        <size key="customSize" width="415" height="388"/>
                                         <connections>
                                             <outlet property="imageView" destination="w2Q-ti-5mD" id="gv3-Bv-Ltr"/>
                                         </connections>
@@ -308,10 +308,37 @@
                                     <constraint firstItem="xvJ-MV-2I5" firstAttribute="height" secondItem="fXR-cv-yYD" secondAttribute="height" id="th2-41-7bl"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RcW-b1-rd7" userLabel="Messages Container">
+                                <rect key="frame" x="83" y="732" width="331" height="110"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Continue procurando uma superfíce horizontal boa!" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="4D2-DX-HcQ">
+                                        <rect key="frame" x="20" y="27.5" width="301" height="55"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="55" id="KS5-Gk-677"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="PerryGothic" family="PerryGothic" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="4D2-DX-HcQ" secondAttribute="trailing" constant="10" id="4Zq-UC-pvn"/>
+                                    <constraint firstItem="4D2-DX-HcQ" firstAttribute="height" secondItem="RcW-b1-rd7" secondAttribute="height" multiplier="0.5" id="kSh-Qm-qIN"/>
+                                    <constraint firstItem="4D2-DX-HcQ" firstAttribute="centerY" secondItem="RcW-b1-rd7" secondAttribute="centerY" id="m1L-GN-Qzb"/>
+                                    <constraint firstItem="4D2-DX-HcQ" firstAttribute="leading" secondItem="RcW-b1-rd7" secondAttribute="leading" constant="20" id="s2d-EO-lxf"/>
+                                </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="DAr-Ln-8fS" appends="YES" id="3Sf-f4-5zT"/>
+                                </connections>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="24w-C5-7fJ" secondAttribute="bottom" id="2at-is-RkS"/>
+                            <constraint firstItem="ENW-MU-7X6" firstAttribute="trailing" secondItem="RcW-b1-rd7" secondAttribute="trailing" id="2hd-4a-FfU"/>
+                            <constraint firstItem="RcW-b1-rd7" firstAttribute="width" secondItem="ENW-MU-7X6" secondAttribute="width" multiplier="0.8" id="3mG-0M-oIR"/>
                             <constraint firstItem="24w-C5-7fJ" firstAttribute="top" secondItem="7fs-Pa-3TO" secondAttribute="top" id="8W0-xT-MEg"/>
                             <constraint firstItem="fXR-cv-yYD" firstAttribute="top" secondItem="ENW-MU-7X6" secondAttribute="top" constant="10" id="MfY-Yl-XXY"/>
                             <constraint firstItem="7fs-Pa-3TO" firstAttribute="width" secondItem="24w-C5-7fJ" secondAttribute="width" id="Pnu-fN-TOT"/>
@@ -319,6 +346,7 @@
                             <constraint firstItem="24w-C5-7fJ" firstAttribute="top" secondItem="ZP3-Ng-ZCA" secondAttribute="top" id="euW-xH-FWp"/>
                             <constraint firstAttribute="trailing" secondItem="24w-C5-7fJ" secondAttribute="trailing" id="f5h-F1-57O"/>
                             <constraint firstItem="7fs-Pa-3TO" firstAttribute="height" secondItem="24w-C5-7fJ" secondAttribute="height" multiplier="0.15" id="gkA-oa-axl"/>
+                            <constraint firstItem="ENW-MU-7X6" firstAttribute="bottom" secondItem="RcW-b1-rd7" secondAttribute="bottom" constant="20" id="jxq-Cu-uhA"/>
                             <constraint firstItem="7fs-Pa-3TO" firstAttribute="centerX" secondItem="24w-C5-7fJ" secondAttribute="centerX" id="mYj-gZ-pd2"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ENW-MU-7X6"/>
@@ -327,6 +355,9 @@
                     <connections>
                         <outlet property="arView" destination="24w-C5-7fJ" id="frR-7J-nTl"/>
                         <outlet property="goBackContainer" destination="fXR-cv-yYD" id="gZq-c2-1ai"/>
+                        <outlet property="messagesContainer" destination="RcW-b1-rd7" id="eR5-b5-czc"/>
+                        <outlet property="messagesContainerTrailing" destination="2hd-4a-FfU" id="vkp-sw-dVR"/>
+                        <outlet property="messagesLabel" destination="4D2-DX-HcQ" id="8Jn-fr-IzG"/>
                         <outlet property="pairsLabel" destination="K6w-Tw-fZg" id="XbF-gE-RFk"/>
                         <outlet property="topBarContainer" destination="7fs-Pa-3TO" id="k4l-Nh-NtG"/>
                     </connections>
@@ -335,6 +366,11 @@
                 <tapGestureRecognizer id="KOH-HB-iE3">
                     <connections>
                         <action selector="viewPressed:" destination="BYZ-38-t0r" id="DuH-e9-NqD"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="DAr-Ln-8fS">
+                    <connections>
+                        <action selector="messagesTapped:" destination="BYZ-38-t0r" id="TkF-Kb-8cW"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
@@ -361,7 +397,7 @@
     <resources>
         <image name="Back" width="306" height="396"/>
         <image name="apple" width="600" height="1000"/>
-        <image name="keyboard.chevron.compact.down" catalog="system" width="64" height="44"/>
         <image name="livephoto.play" catalog="system" width="64" height="60"/>
+        <image name="logo-vazia" width="600" height="261"/>
     </resources>
 </document>

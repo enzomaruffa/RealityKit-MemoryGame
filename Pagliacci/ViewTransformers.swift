@@ -19,4 +19,15 @@ class ViewTransformers {
         view.layer.shadowRadius = 3
     }
     
+    static func styleMessage(view: UIView) {
+        view.clipsToBounds = true
+        view.layer.cornerRadius = 9
+        view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner]
+        
+        view.layer.shadowColor = UIColor.black.cgColor
+        view.layer.shadowOpacity = 0.5
+        view.layer.shadowOffset = CGSize(width: 2, height: 2)
+        view.layer.shadowRadius = 3
+    }
+    
 }
