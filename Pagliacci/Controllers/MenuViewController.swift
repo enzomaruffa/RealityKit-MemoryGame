@@ -62,7 +62,6 @@ class MenuViewController: UIViewController {
         
         // Setup your camera here...
         captureSession = AVCaptureSession()
-        captureSession.sessionPreset = .medium
         
         guard let backCamera = AVCaptureDevice.default(for: AVMediaType.video)
             else {
